@@ -1,12 +1,22 @@
+import re
 import math
-print("Бондар Ілля Юрійович \nЛабораторна робота №1 \nВаріант 1 \nПереведення радіанної міри кута")
-print("KM - 93")
+'''Скласти програму переведення радіанної міри кута в градуси, хвилини і секунди.'''
 
-a = int(input("Вкажіть радіани :"))
+re_int = re.compile("^[-+]{0,1}\d+$")
 
-res = float(math.degrees(a))
+def validator(pattern,promt):
+    text = input(promt)
+    while not bool(pattern.match(text)):
+        text = input(promt)
+    return text
 
-print("Градусів: " + str(round((res),3)))
-print("Хвилин: " + str(round((res * 60),3)))
-print("Секунд: " + str(round((res * 3600),3)))
-print("Робота програми завершена")
+q = 0
+while q != "ex":
+    res = math.degrees(float(validator(re_int,"Вкажіть радіани :")))
+    print('Градусів: '  + str(round((res),3)))
+    print('Хвилин:'  + str(round((res * 60),3)))
+    print('Секунд: ' + str(round((res * 3600),3)))
+    print('Робота програми завершена')
+    q = input("Введіть <<ex>> для виходу з програми : ")
+
+
